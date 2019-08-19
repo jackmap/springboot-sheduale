@@ -1,43 +1,79 @@
 package com.example.config;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+//多任务执行的类
 @Component
+@Async
 public class TestTask {
-    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-HH-dd HH:mm:ss");
 
-    @Scheduled(fixedDelay = 20000)//两秒执行一次
-    public void test() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        // 没有返回值的异步调用
+        @Async // 表明这异步方法 无返回值
+        public  void task1() {
+            long s = System.currentTimeMillis();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            long e = System.currentTimeMillis();
+            System.out.println("tas1k总耗时:" + (e - s));
+            System.out.println("执行异步任务 1 :"  + Thread.currentThread().getName());
         }
-        System.out.println("定时任务1  当前时间： "+sdf.format(new Date()));
-    }
 
-
-    @Scheduled(fixedDelay = 20000)//两秒执行一次
-    public void test2() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        @Async // 表明这异步方法 无返回值
+        public  void task2() {
+            long s = System.currentTimeMillis();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            long e = System.currentTimeMillis();
+            System.out.println("tas2k总耗时:" + (e - s));
+            System.out.println("执行异步任务2 : " + Thread.currentThread().getName());
         }
-        System.out.println("定时任务2  当前时间： "+sdf.format(new Date()));
-    }
 
-    @Scheduled(fixedDelay = 20000)//两秒执行一次
-    public void test3() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        @Async // 表明这异步方法 无返回值
+        public  void task3() {
+            long s = System.currentTimeMillis();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            long e = System.currentTimeMillis();
+            System.out.println("tas3k总耗时:" + (e - s));
+            System.out.println("执行异步任务3 : "  + Thread.currentThread().getName());
         }
-        System.out.println("定时任务3 当前时间： "+sdf.format(new Date()));
-    }
+
+        @Async // 表明这异步方法 无返回值
+        public  void task5() {
+            long s = System.currentTimeMillis();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            long e = System.currentTimeMillis();
+            System.out.println("tas5k总耗时:" + (e - s));
+            System.out.println("执行异步任务" + 5 + Thread.currentThread().getName());
+        }
+
+        @Async // 表明这异步方法 无返回值
+        public  void task4() {
+            long s = System.currentTimeMillis();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            long e = System.currentTimeMillis();
+            System.out.println("tas4k总耗时:" + (e - s));
+            System.out.println("执行异步任务" + 4 + Thread.currentThread().getName());
+        }
 }
